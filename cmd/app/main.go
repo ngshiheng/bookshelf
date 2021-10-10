@@ -1,6 +1,7 @@
 package main
 
 import (
+	dbConn "bookshelf/adapter/gorm"
 	"bookshelf/config"
 	"bookshelf/server/app"
 	"bookshelf/server/router"
@@ -14,7 +15,16 @@ func main() {
 
 	logger := lr.New(appConf.Debug)
 
-	application := app.New(logger)
+	db, err := dbConn.New(appConf)
+	if err != nil {
+		logger.Fatal().Err(err).Msg("")
+		return
+	}
+	if appConf.Debug {
+		db.LogMode(true)
+	}
+
+	application := app.New(logger, db)
 
 	appRouter := router.New(application)
 
