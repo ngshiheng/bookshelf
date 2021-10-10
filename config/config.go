@@ -19,6 +19,7 @@ type serverConf struct {
 	TimeoutRead  time.Duration `env:"SERVER_TIMEOUT_READ,required"`
 	TimeoutWrite time.Duration `env:"SERVER_TIMEOUT_WRITE,required"`
 	TimeoutIdle  time.Duration `env:"SERVER_TIMEOUT_IDLE,required"`
+	Debug        bool          `env:"DEBUG,required"`
 }
 
 func AppConfig() *Conf {

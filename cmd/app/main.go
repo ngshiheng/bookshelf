@@ -3,22 +3,21 @@ package main
 import (
 	"bookshelf/config"
 	"bookshelf/server/router"
+	lr "bookshelf/util/logger"
 	"fmt"
-	"log"
 	"net/http"
 )
 
 func main() {
 	appConf := config.AppConfig()
 
-	appRouter := router.New()
+	logger := lr.New(appConf.Server.Debug)
 
-	mux := http.NewServeMux()
-	mux.HandleFunc("/", Greet)
+	appRouter := router.New()
 
 	address := fmt.Sprintf(":%d", appConf.Server.Port)
 
-	log.Println("Starting server :8080")
+	logger.Info().Msgf("Starting server %v", address)
 
 	s := &http.Server{
 		Addr:         address,
@@ -29,10 +28,6 @@ func main() {
 	}
 
 	if err := s.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-		log.Fatal("Server startup failed")
+		logger.Fatal().Err(err).Msg("Server startup failed")
 	}
-}
-
-func Greet(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello World!")
 }
