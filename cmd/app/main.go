@@ -2,6 +2,7 @@ package main
 
 import (
 	"bookshelf/config"
+	"bookshelf/server/router"
 	"fmt"
 	"log"
 	"net/http"
@@ -9,6 +10,8 @@ import (
 
 func main() {
 	appConf := config.AppConfig()
+
+	appRouter := router.New()
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", Greet)
@@ -19,7 +22,7 @@ func main() {
 
 	s := &http.Server{
 		Addr:         address,
-		Handler:      mux,
+		Handler:      appRouter,
 		ReadTimeout:  appConf.Server.TimeoutRead,
 		WriteTimeout: appConf.Server.TimeoutWrite,
 		IdleTimeout:  appConf.Server.TimeoutIdle,
