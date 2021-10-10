@@ -12,7 +12,7 @@ import (
 func main() {
 	appConf := config.AppConfig()
 
-	logger := lr.New(appConf.Server.Debug)
+	logger := lr.New(appConf.Debug)
 
 	application := app.New(logger)
 
