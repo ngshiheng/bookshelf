@@ -54,12 +54,14 @@ func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		// then consume the rest of the Body to provide an accurate rcc.n.
 		io.Copy(ioutil.Discard, rcc)
 	}
+
 	le.RequestBodySize = rcc.n
 	le.Status = w2.code
 	if le.Status == 0 {
 		le.Status = http.StatusOK
 	}
 	le.ResponseHeaderSize, le.ResponseBodySize = w2.size()
+
 	h.logger.Info().
 		Time("received_time", le.ReceivedTime).
 		Str("method", le.RequestMethod).
