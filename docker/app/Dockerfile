@@ -10,7 +10,7 @@ RUN go mod download
 
 COPY . .
 
-RUN go build -ldflags '-w -s' -a -o ./bin/app ./cmd/ap
+RUN go build -ldflags '-w -s' -a -o ./bin/app ./cmd/app
 
 # Deployment environment
 # ----------------------
