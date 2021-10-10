@@ -20,6 +20,7 @@ func main() {
 		logger.Fatal().Err(err).Msg("")
 		return
 	}
+
 	if appConf.Debug {
 		db.LogMode(true)
 	}

@@ -20,3 +20,7 @@ func New(
 		db:     db,
 	}
 }
+
+func (app *App) Logger() *logger.Logger {
+	return app.logger
+}
