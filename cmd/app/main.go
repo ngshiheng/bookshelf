@@ -6,6 +6,7 @@ import (
 	"bookshelf/server/app"
 	"bookshelf/server/router"
 	lr "bookshelf/util/logger"
+	vr "bookshelf/util/validator"
 	"fmt"
 	"net/http"
 )
@@ -25,7 +26,9 @@ func main() {
 		db.LogMode(true)
 	}
 
-	application := app.New(logger, db)
+	validator := vr.New()
+
+	application := app.New(logger, db, validator)
 
 	appRouter := router.New(application)
 

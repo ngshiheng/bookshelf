@@ -4,20 +4,24 @@ import (
 	"bookshelf/util/logger"
 
 	"github.com/jinzhu/gorm"
+	"gopkg.in/go-playground/validator.v9"
 )
 
 type App struct {
-	logger *logger.Logger
-	db     *gorm.DB
+	logger    *logger.Logger
+	db        *gorm.DB
+	validator *validator.Validate
 }
 
 func New(
 	logger *logger.Logger,
 	db *gorm.DB,
+	validator *validator.Validate,
 ) *App {
 	return &App{
-		logger: logger,
-		db:     db,
+		logger:    logger,
+		db:        db,
+		validator: validator,
 	}
 }
 
