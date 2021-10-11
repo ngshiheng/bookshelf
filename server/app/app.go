@@ -39,6 +39,6 @@ const (
 	appErrFormDecodingFailure = "form decoding failure"
 )
 
-const (
-	appErrDataUpdateFailure = "data creation failure"
-)
+const appErrDataUpdateFailure = "data creation failure"
+
+const appErrFormErrResponseFailure = "form error response failure"
