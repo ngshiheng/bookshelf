@@ -24,3 +24,17 @@ func New(
 func (app *App) Logger() *logger.Logger {
 	return app.logger
 }
+
+const (
+	appErrDataAccessFailure   = "data access failure"
+	appErrJsonCreationFailure = "json creation failure"
+)
+
+const (
+	appErrDataCreationFailure = "data creation failure"
+	appErrFormDecodingFailure = "form decoding failure"
+)
+
+const (
+	appErrDataUpdateFailure = "data creation failure"
+)
